@@ -2,21 +2,23 @@
 import requests
 import sys
 
-def get_movie_data(The Phantom Menace):
+def get_movie_data(movie_id):
+    """Fetch movie data from Star Wars API based on movie ID."""
     # Base URL for Star Wars API
-    url = f"https://swapi.dev/api/films/{The Phantom Menace}/"
+    url = f"https://swapi.dev/api/films/{movie_id}/"
 
     # Send request to get the movie data
     response = requests.get(url)
 
     # If the response status is not 200, return None (movie doesn't exist)
     if response.status_code != 200:
-        print(f"Error: Movie with ID {The Phantom Menace} not found")
+        print(f"Error: Movie with ID {movie_id} not found")
         return None
 
     return response.json()
 
 def get_character_name(character_url):
+    """Fetch character name from the given character URL."""
     # Send request to get the character data
     response = requests.get(character_url)
 
@@ -27,7 +29,7 @@ def get_character_name(character_url):
 
 def main():
     if len(sys.argv) != 2:
-        print("Usage: python script_name.py <The Phantom Menace>")
+        print("Usage: ./0-starwars_characters.js <movie_id>")
         sys.exit(1)
 
     # Get the movie ID from the first argument
@@ -49,5 +51,5 @@ def main():
         if character_name:
             print(character_name)
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()
